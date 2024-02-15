@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 [RequireComponent(typeof(AudioSource))]
 
@@ -12,7 +14,9 @@ public class Jump : MonoBehaviour
     [SerializeField] private float jumpHeight = 2.0f;
     [SerializeField] private float gravityAcceleration = -9.81f;
     
+    // Stuff for the jump sound effect
     [SerializeField] private AudioClip jumpSound;
+    private AudioSource audioSource;
 
     private CharacterController characterController;
     private Vector3 playerVelocity;
@@ -20,6 +24,7 @@ public class Jump : MonoBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable() // no clue what these do
@@ -37,11 +42,11 @@ public class Jump : MonoBehaviour
         if (!characterController.isGrounded) // if the player isn't grounded, exit the function
             return;
 
-        playerVelocity.y = Mathf.Sqrt(jumpHeight * -2.0f * gravityAcceleration); // manipulates kinematic equation to find the velocity
+        playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravityAcceleration); // manipulates kinematic equation to find the velocity
                                                                                  // required to reach jumpHeight and sets playerVelocity's y component to that
 
+        audioSource.PlayOneShot(jumpSound);                                      // play the jumping sound effect when Jumping() is called
 
-        
     }
 
     public void Update()
