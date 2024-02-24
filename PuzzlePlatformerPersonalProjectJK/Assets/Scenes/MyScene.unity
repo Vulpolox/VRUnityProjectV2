@@ -1091,7 +1091,7 @@ PrefabInstance:
     - target: {fileID: 7279948446928930219, guid: 031a63e03d85ea742bc7a7000baf0cfb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.49529886
+      value: 0.4952991
       objectReference: {fileID: 0}
     - target: {fileID: 7279948446928930219, guid: 031a63e03d85ea742bc7a7000baf0cfb,
         type: 3}
@@ -2584,18 +2584,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2110348120}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1297768625 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4579311597441921620, guid: eb162f0964306154580ba66a137ef0de,
-    type: 3}
-  m_PrefabInstance: {fileID: 6928029400584204241}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bf296fc962d7184ab14ad1841598d5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1322061393 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2012585081673472246, guid: 84a532b190bc735498420a42a0051119,
@@ -4513,21 +4501,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 669948824}
     m_Modifications:
-    - target: {fileID: 1785649845658127347, guid: eb162f0964306154580ba66a137ef0de,
-        type: 3}
-      propertyPath: jumpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 16fba6d30ed741d4a9fdd6e79ee2f3ac, type: 3}
-    - target: {fileID: 4020047462741440803, guid: eb162f0964306154580ba66a137ef0de,
-        type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4350589603779208629, guid: eb162f0964306154580ba66a137ef0de,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.3
-      objectReference: {fileID: 0}
     - target: {fileID: 4586032178453859829, guid: eb162f0964306154580ba66a137ef0de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4578,16 +4551,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5312021502596778848, guid: eb162f0964306154580ba66a137ef0de,
-        type: 3}
-      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5579357404160840917, guid: eb162f0964306154580ba66a137ef0de,
-        type: 3}
-      propertyPath: m_LocomotionProvider
-      value: 
-      objectReference: {fileID: 1297768625}
     - target: {fileID: 5706387102262599254, guid: eb162f0964306154580ba66a137ef0de,
         type: 3}
       propertyPath: m_Name
