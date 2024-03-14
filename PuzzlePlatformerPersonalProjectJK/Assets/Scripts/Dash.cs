@@ -1,27 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Dash : MonoBehaviour
 {
     // editor-adjustable variables for dash metrics
-    [SerializeField] private float dashCooldownTime; // the time it takes after dashing to be able to dash again
-    [SerializeField] private float dashDuration;     // the time of the dash
-    [SerializeField] private float dashForce;        // the strength of the dash
+    [SerializeField] private float dashCooldownTime = 2.0f; // the time it takes after dashing to be able to dash again
+    [SerializeField] private float dashDuration = 1.0f;     // the time of the dash
+    [SerializeField] private float dashForce = 5.0f;        // the strength of the dash
 
     // private variables
-    private Vector2 dashDirection;       // variable for holding the normalized vector containing the x and z components of the player's current movement direction
+    private Vector3 dashDirection;       // variable for holding the normalized vector containing the x and z components of the player's current movement direction
     private bool dashOnCooldown = false; // flag for whether or not dash is on cooldown
     private bool isDashing = false;      // flag for whether or not the player is currently dashing
 
     // for mappable dash button
     [SerializeField] private InputActionReference dashButton;
 
-    // reference of CharacterController
+    // references to game objects
     private CharacterController player;
+    private XROrigin xrRig;
 
-    void Start() {player = GetComponent<CharacterController>();}
+    void Start() 
+    {
+        player = GetComponent<CharacterController>();
+        xrRig = GetComponent<XROrigin>();
+    }
 
     private void OnEnable() {dashButton.action.performed += Dashing;}
     private void OnDisable() {dashButton.action.performed -= Dashing;}
@@ -30,9 +36,10 @@ public class Dash : MonoBehaviour
     private void Dashing(InputAction.CallbackContext obj)
     {
         // if the dash is not on cooldown and the player isn't currently dashing
-        if (!dashOnCooldown && !isDashing)
+        if (!dashOnCooldown && !isDashing && !player.isGrounded)
         {
-            dashDirection = this.transform.forward;
+            dashDirection = xrRig.Camera.transform.forward;
+            dashDirection.y = 0;
 
             StartCoroutine(performDash(dashDirection));
             StartCoroutine(dashCooldownCoroutine());
@@ -42,7 +49,7 @@ public class Dash : MonoBehaviour
     }
 
     // coroutine that handles the logic for the dash itself
-    IEnumerator performDash(Vector2 dashDirection)
+    IEnumerator performDash(Vector3 dashDirection)
     {
         if (dashOnCooldown)
             yield break;
@@ -50,11 +57,13 @@ public class Dash : MonoBehaviour
         isDashing = true;                               // set the isDashing flag to true
 
         float startTime = Time.time;                    // the time at which the dash is initiated
-        Vector2 dashVector = dashDirection * dashForce; // the vector representing the number of units to move per second in the x and z directions
+        Vector3 dashVector = dashDirection * dashForce; // the vector representing the number of units to move per second in the x and z directions
 
         while (Time.time < startTime + dashDuration)
         {
-            player.Move(dashVector * Time.deltaTime);
+            // only move the player if they're in the air so as to prevent ackward sliding on the ground
+            if (!player.isGrounded)
+                player.Move(dashVector * Time.deltaTime);
 
             yield return null;
         }
@@ -65,16 +74,15 @@ public class Dash : MonoBehaviour
     // coroutine that handles the logic for the dash cooldown
     IEnumerator dashCooldownCoroutine()
     {
-        float currentTime = Time.time;                    // the starting time of the cooldown timer
-        float endTime = currentTime + dashCooldownTime;   // the ending time of the cooldown timer
+        float startTime = Time.time;                      // the starting time of the cooldown timer
+        bool regrounded = false;                          // flag for tracking whether the player has grounded since dashing
 
         dashOnCooldown = true;                            // set the dashOnCooldown flag to true
 
-        while (currentTime < endTime)
+        while (Time.time < (startTime + dashCooldownTime) && !regrounded)
         {
-            // only progress the cooldown if the player is grounded; goal is to only have one dash available per time in air
             if (player.isGrounded)
-                currentTime += Time.deltaTime;
+                regrounded = true;
 
             yield return null;
         }
