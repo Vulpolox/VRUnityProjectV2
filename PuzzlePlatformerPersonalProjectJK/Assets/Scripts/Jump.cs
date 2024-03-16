@@ -21,21 +21,18 @@ public class Jump : MonoBehaviour
     private CharacterController characterController;
     private Vector3 playerVelocity;
 
+    private MovementHandler movementHandler; // holds a reference to the PlayerMovmentHandler script attached to the XROrigin
+
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         audioSource = GetComponent<AudioSource>();
+        movementHandler = GetComponent<MovementHandler>();
     }
 
-    private void OnEnable() // no clue what these do
-    {
-        jumpButton.action.performed += Jumping;
-    }
-
-    private void OnDisable()
-    {
-        jumpButton.action.performed -= Jumping;
-    }
+    // no clue what these do
+    private void OnEnable() {jumpButton.action.performed += Jumping;}
+    private void OnDisable() {jumpButton.action.performed -= Jumping;}
 
     private void Jumping(InputAction.CallbackContext obj)
     {
@@ -44,19 +41,10 @@ public class Jump : MonoBehaviour
 
         playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravityAcceleration); // manipulates kinematic equation to find the velocity
                                                                                  // required to reach jumpHeight and sets playerVelocity's y component to that
+        
+        movementHandler.setPlayerVelocity(playerVelocity);                       // set the player's updated velocity
 
         audioSource.PlayOneShot(jumpSound);                                      // play the jumping sound effect when Jumping() is called
 
-    }
-
-    public void Update()
-    {
-        if (characterController.isGrounded && playerVelocity.y < 0) // prevents large negative acceleration while on the ground
-        {
-            playerVelocity.y = 0.0f;
-        }
-
-        playerVelocity.y += gravityAcceleration * Time.deltaTime; // decrease player velocity by 9.81 meters per second
-        characterController.Move(playerVelocity * Time.deltaTime); // changes the player's y position based on the current y velocity
     }
 }

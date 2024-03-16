@@ -22,11 +22,13 @@ public class Dash : MonoBehaviour
     // references to game objects
     private CharacterController player;
     private XROrigin xrRig;
+    private MovementHandler movementHandler;
 
     void Start() 
     {
         player = GetComponent<CharacterController>();
         xrRig = GetComponent<XROrigin>();
+        movementHandler = GetComponent<MovementHandler>();
     }
 
     private void OnEnable() {dashButton.action.performed += Dashing;}
@@ -43,7 +45,6 @@ public class Dash : MonoBehaviour
 
             StartCoroutine(performDash(dashDirection));
             StartCoroutine(dashCooldownCoroutine());
-
         }
         
     }
@@ -54,10 +55,10 @@ public class Dash : MonoBehaviour
         if (dashOnCooldown)
             yield break;
 
-        isDashing = true;                               // set the isDashing flag to true
+        isDashing = true;                                // set the isDashing flag to true
 
-        float startTime = Time.time;                    // the time at which the dash is initiated
-        Vector3 dashVector = dashDirection * dashForce; // the vector representing the number of units to move per second in the x and z directions
+        float startTime = Time.time;                     // the time at which the dash is initiated
+        Vector3 dashVector = dashDirection * dashForce;  // the vector representing the number of units to move per second in the x and z directions
 
         while (Time.time < startTime + dashDuration)
         {
