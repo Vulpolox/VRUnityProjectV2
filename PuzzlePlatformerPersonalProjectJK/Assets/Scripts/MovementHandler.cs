@@ -11,6 +11,12 @@ public class MovementHandler : MonoBehaviour
     private Vector3 playerVelocity = Vector3.zero;         // vector to keep track of velocity to apply to CharacterController
     private float gravitationalAcceleration = -9.81f;      // acceleration due to gravity
 
+    private Vector3 currentPosition = Vector3.zero;
+    private Vector3 previousPosition = Vector3.zero;
+    private float movementThreshold = 0.02f;
+    private bool lateralMovmementFlag = false;
+
+
     private void Awake() { characterController = GetComponent<CharacterController>(); }
 
     // handle player falling due to gravity in Update()
@@ -25,6 +31,21 @@ public class MovementHandler : MonoBehaviour
         playerVelocity.y += gravitationalAcceleration * Time.deltaTime;  // increment the playerVelocity.y by g every second
 
         characterController.Move(playerVelocity * Time.deltaTime);       // apply playerVelocity to the characterController
+
+        
+        // update the lateralMovementFlag based on whether or not the player is moving in the x or z directions
+        currentPosition = characterController.transform.position;
+        lateralMovmementFlag = isMovingLaterally();
+    }
+
+    // method for determining whether or not the player is moving laterally
+    private bool isMovingLaterally()
+    {
+        bool result = Mathf.Abs(currentPosition.z - previousPosition.z) > movementThreshold   // the boolean to return
+                   || Mathf.Abs(currentPosition.x - previousPosition.x) > movementThreshold;
+
+        previousPosition = currentPosition;                                                   // update the previous position
+        return result;
     }
 
     // public method to toggle whether or not the player can move horizontally
@@ -45,4 +66,7 @@ public class MovementHandler : MonoBehaviour
 
     // public method for getting player's velocity
     public Vector3 getPlayerVelocity() { return playerVelocity; }
+
+    // public method that returns a boolean based on whether or not the player has moved laterally since the previous call to Update
+    public bool getLateralMovement() { return lateralMovmementFlag; }
 }

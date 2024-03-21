@@ -20,6 +20,7 @@ public class Jump : MonoBehaviour
 
     private CharacterController characterController;
     private Vector3 playerVelocity;
+    private bool isJumping = false;
 
     private MovementHandler movementHandler; // holds a reference to the PlayerMovmentHandler script attached to the XROrigin
 
@@ -36,15 +37,19 @@ public class Jump : MonoBehaviour
 
     private void Jumping(InputAction.CallbackContext obj)
     {
-        if (!characterController.isGrounded) // if the player isn't grounded, exit the function
+        // if the player isn't grounded, exit the function
+        if (!characterController.isGrounded || isJumping)
             return;
 
-        playerVelocity.y = Mathf.Sqrt(jumpHeight * -3.0f * gravityAcceleration); // manipulates kinematic equation to find the velocity
-                                                                                 // required to reach jumpHeight and sets playerVelocity's y component to that
-        
-        movementHandler.setPlayerVelocity(playerVelocity);                       // set the player's updated velocity
+        bool isMoving = movementHandler.getLateralMovement();                         // a boolean that specifies whether or not the player has moved laterally since last frame
+        float velocityToApply = Mathf.Sqrt(jumpHeight * -3.0f * gravityAcceleration); // the jump velocity to apply to the player
 
-        audioSource.PlayOneShot(jumpSound);                                      // play the jumping sound effect when Jumping() is called
+        playerVelocity.y = (isMoving) ? velocityToApply : (velocityToApply / 1.35f);  // b/c of jankiness from the ContinuousMoveProvider, jump velocity needs to be modified when
+                                                                                      // the player isn't moving to prevent jumping higher than expected
+
+        movementHandler.setPlayerVelocity(playerVelocity);                            // set the player's updated velocity
+
+        audioSource.PlayOneShot(jumpSound);                                           // play the jumping sound effect when Jumping() is called
 
     }
 }

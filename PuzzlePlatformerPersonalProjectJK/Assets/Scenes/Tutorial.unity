@@ -3737,7 +3737,6 @@ MonoBehaviour:
   dashCooldownTime: 20
   dashDuration: 0.5
   dashForce: 10
-  dashHeight: 0
   dashButton: {fileID: 7276688865206375475, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
 --- !u!114 &671861270
@@ -3749,7 +3748,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 163334899}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3b35d351b11c2841b105b508ac9c0d3, type: 3}
+  m_Script: {fileID: 11500000, guid: fd329d83ad64dc44aa1f430a35235ef2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!43 &763491215
@@ -4443,6 +4442,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1281140811}
     m_Modifications:
+    - target: {fileID: 4579311597441921620, guid: eb162f0964306154580ba66a137ef0de,
+        type: 3}
+      propertyPath: m_MoveSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579311597441921620, guid: eb162f0964306154580ba66a137ef0de,
+        type: 3}
+      propertyPath: m_EnableStrafe
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4586032178453859829, guid: eb162f0964306154580ba66a137ef0de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14178,8 +14187,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1281140811}
-  - {fileID: 1826347739}
-  - {fileID: 336763152}
   - {fileID: 1046832773}
   - {fileID: 504266520}
   - {fileID: 1536336718}
+  - {fileID: 1826347739}
+  - {fileID: 336763152}
