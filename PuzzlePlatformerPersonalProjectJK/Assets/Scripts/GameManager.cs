@@ -66,6 +66,18 @@ public class GameManager : MonoBehaviour
         // change the color of the player's hands to signify the current color state
         leftRenderer.material.color = newColor;
         rightRenderer.material.color = newColor;
+
+        // change the color state
+        currentPlayerColor = newColor;
+    }
+
+    // method for getting the player's current color
+    public Color GetCurrentColor() { return currentPlayerColor; }
+
+    // static method for comparing RGB of colors
+    public static bool isColorEqual(Color c1, Color c2)
+    {
+        return (c1.r == c2.r) && (c1.g == c2.g) && (c1.b == c2.b);
     }
 
 }
