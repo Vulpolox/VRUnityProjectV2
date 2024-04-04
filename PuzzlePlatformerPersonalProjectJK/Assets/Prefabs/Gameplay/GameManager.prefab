@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 0}
   player: {fileID: 0}
+  startingColor: {r: 0.7264151, g: 0.08566215, b: 0.08566215, a: 0}
