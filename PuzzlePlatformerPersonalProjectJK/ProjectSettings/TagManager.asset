@@ -8,6 +8,7 @@ TagManager:
   - LeftHand
   - RightHand
   - ColorBlock
+  - GameManager
   layers:
   - Default
   - TransparentFX

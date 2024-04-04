@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         player.transform.rotation = startPoint.transform.rotation;
     }
 
-    // method for changing the player's color state
+    // public method for changing the player's color state
     public void ChangeColor(Color newColor)
     {
         // change the color of the player's hands to signify the current color state

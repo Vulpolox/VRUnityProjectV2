@@ -11,17 +11,18 @@ public class ColorCube : MonoBehaviour
 
     private void Awake()
     {
-        blockRenderer = this.GetComponent<Renderer>();
-        blockCollider = this.GetComponent<Collider>();
+        blockRenderer = this.GetComponent<Renderer>();  // set reference of the renderer
+        blockCollider = this.GetComponent<Collider>();  // set reference of the collider
 
-        blockRenderer.material.color = blockColor;
+        blockRenderer.material.color = blockColor;      // change the color of the block
     }
 
     // method for setting the ColorBlock's state
     public void SetState(bool isSolid)
     {
-        Color tempColor = new Color();
+        Color tempColor = new Color(); // temporary Color object because Unity is finnicky with assigning new alpha values
 
+        // if the block's state is specified to be changed to solid
         if (isSolid)
         {
             tempColor = blockRenderer.material.color;
@@ -30,6 +31,7 @@ public class ColorCube : MonoBehaviour
 
         }
 
+        // if the block's state is specified to be changed to passable
         else
         {
             tempColor = blockRenderer.material.color;
@@ -37,7 +39,7 @@ public class ColorCube : MonoBehaviour
             blockRenderer.material.color = tempColor;
         }
 
-        blockCollider.enabled = isSolid;
+        blockCollider.enabled = isSolid; // toggle the collider
     }
 
 }
