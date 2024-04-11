@@ -20,7 +20,6 @@ public class Jump : MonoBehaviour
 
     private CharacterController characterController;
     private Vector3 playerVelocity;
-    private bool isJumping = false;
 
     private MovementHandler movementHandler; // holds a reference to the PlayerMovmentHandler script attached to the XROrigin
 
@@ -37,8 +36,10 @@ public class Jump : MonoBehaviour
 
     private void Jumping(InputAction.CallbackContext obj)
     {
+        Debug.LogFormat("Grounded: {0}", characterController.isGrounded);
+
         // if the player isn't grounded, exit the function
-        if (!characterController.isGrounded || isJumping)
+        if (!characterController.isGrounded)
             return;
 
         bool isMoving = movementHandler.getLateralMovement();                         // a boolean that specifies whether or not the player has moved laterally since last frame

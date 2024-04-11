@@ -656,6 +656,7 @@ MonoBehaviour:
   dashForce: 10
   dashButton: {fileID: 7276688865206375475, guid: c348712bda248c246b8c49b3db54643f,
     type: 3}
+  dashSound: {fileID: 8300000, guid: 51dd948ba26a6f946959839f1620ea2a, type: 3}
 --- !u!114 &5180689504810509043
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -61,6 +61,9 @@ public class MovementHandler : MonoBehaviour
     // public method for setting the gravitational acceleration
     public void setGravity(float newGravity) { gravitationalAcceleration = newGravity; }
 
+    // public method for getting the current gravitational acceleration
+    public float getGravity() { return this.gravitationalAcceleration; }
+
     // public method for setting player's velocity
     public void setPlayerVelocity(Vector3 newPlayerVelocity) { playerVelocity = newPlayerVelocity; }
 

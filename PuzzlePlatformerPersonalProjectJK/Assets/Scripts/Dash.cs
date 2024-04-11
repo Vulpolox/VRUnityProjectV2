@@ -19,16 +19,19 @@ public class Dash : MonoBehaviour
     // for mappable dash button
     [SerializeField] private InputActionReference dashButton;
 
-    // references to game objects
+    // references to components
     private CharacterController player;
     private XROrigin xrRig;
     private MovementHandler movementHandler;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip dashSound;
 
     void Start() 
     {
         player = GetComponent<CharacterController>();
         xrRig = GetComponent<XROrigin>();
         movementHandler = GetComponent<MovementHandler>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable() {dashButton.action.performed += Dashing;}
@@ -52,6 +55,8 @@ public class Dash : MonoBehaviour
     // coroutine that handles the logic for the dash itself
     IEnumerator performDash(Vector3 dashDirection)
     {
+        audioSource.PlayOneShot(dashSound);
+
         if (dashOnCooldown)
             yield break;
 
