@@ -36,8 +36,6 @@ public class Jump : MonoBehaviour
 
     private void Jumping(InputAction.CallbackContext obj)
     {
-        Debug.LogFormat("Grounded: {0}", characterController.isGrounded);
-
         // if the player isn't grounded, exit the function
         if (!characterController.isGrounded)
             return;

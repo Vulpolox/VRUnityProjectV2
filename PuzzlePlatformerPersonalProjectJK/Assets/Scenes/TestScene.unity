@@ -163,11 +163,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1394334277}
     m_Modifications:
-    - target: {fileID: 3374885651270321186, guid: eb162f0964306154580ba66a137ef0de,
-        type: 3}
-      propertyPath: m_SkinWidth
-      value: 0.0001
-      objectReference: {fileID: 0}
     - target: {fileID: 4586032178453859829, guid: eb162f0964306154580ba66a137ef0de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1204,21 +1199,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: ColorBlock
       objectReference: {fileID: 0}
-    - target: {fileID: 4027035055076677639, guid: eec4d93fe6e0056488bbe4d1717696b4,
-        type: 3}
-      propertyPath: blockColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4027035055076677639, guid: eec4d93fe6e0056488bbe4d1717696b4,
-        type: 3}
-      propertyPath: blockColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4027035055076677639, guid: eec4d93fe6e0056488bbe4d1717696b4,
-        type: 3}
-      propertyPath: blockColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4907205863997051311, guid: eec4d93fe6e0056488bbe4d1717696b4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1402,11 +1382,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 467377099482906773, guid: 791efcbc2ae777c47bcda196fae178da,
-        type: 3}
-      propertyPath: m_TagString
-      value: GameManager
-      objectReference: {fileID: 0}
     - target: {fileID: 2737795026647957837, guid: 791efcbc2ae777c47bcda196fae178da,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1456,52 +1431,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525884987718249085, guid: 791efcbc2ae777c47bcda196fae178da,
-        type: 3}
-      propertyPath: powerupButton
-      value: 
-      objectReference: {fileID: -5186881188344027971, guid: c348712bda248c246b8c49b3db54643f,
-        type: 3}
-    - target: {fileID: 6525884987718249085, guid: 791efcbc2ae777c47bcda196fae178da,
-        type: 3}
-      propertyPath: noPowerupSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 9e58b2da6db3bf344897e51e019035bb, type: 3}
-    - target: {fileID: 6525884987718249085, guid: 791efcbc2ae777c47bcda196fae178da,
-        type: 3}
-      propertyPath: superDashSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 8e06df4081392334fb549ad5d3aa511b, type: 3}
-    - target: {fileID: 6525884987718249085, guid: 791efcbc2ae777c47bcda196fae178da,
-        type: 3}
-      propertyPath: superJumpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: bf4b6e1cacfd3914dbec7113cb95a5ce, type: 3}
-    - target: {fileID: 6525884987718249085, guid: 791efcbc2ae777c47bcda196fae178da,
-        type: 3}
-      propertyPath: lowGravitySound
-      value: 
-      objectReference: {fileID: 8300000, guid: 618aa48523c179d4abd1eedf623b07cc, type: 3}
-    - target: {fileID: 6525884987718249085, guid: 791efcbc2ae777c47bcda196fae178da,
-        type: 3}
-      propertyPath: startingColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525884987718249085, guid: 791efcbc2ae777c47bcda196fae178da,
-        type: 3}
-      propertyPath: startingColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525884987718249085, guid: 791efcbc2ae777c47bcda196fae178da,
-        type: 3}
-      propertyPath: startingColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6525884987718249085, guid: 791efcbc2ae777c47bcda196fae178da,
-        type: 3}
-      propertyPath: startingColor.r
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

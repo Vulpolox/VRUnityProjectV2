@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class MovementHandler : MonoBehaviour
 {
-    private bool isHorizontalMovement = true;              // flag for horizontal movement
-    private bool isVerticalMovement = true;                // flag for vertical movement
+    private bool isHorizontalMovement = true;                    // flag for horizontal movement
+    private bool isVerticalMovement = true;                      // flag for vertical movement
 
-    private CharacterController characterController;       // variable to store the XROrigin's CharacterController
-    private Vector3 playerVelocity = Vector3.zero;         // vector to keep track of velocity to apply to CharacterController
-    private float gravitationalAcceleration = -9.81f;      // acceleration due to gravity
+    private CharacterController characterController;             // variable to store the XROrigin's CharacterController
+    private ActionBasedContinuousMoveProvider moveProvider;      // variable to store the ContinuousMoveProvider
+    private CharacterControllerDriver characterControllerDriver; // variable to store the CharacterControllerDriver
+    private Jump jumpScriptRef;
+    private Dash dashScriptRef;
+
+    private Vector3 playerVelocity = Vector3.zero;               // vector to keep track of velocity to apply to CharacterController
+    private float gravitationalAcceleration = -9.81f;            // acceleration due to gravity
 
     private Vector3 currentPosition = Vector3.zero;
     private Vector3 previousPosition = Vector3.zero;
@@ -17,7 +23,14 @@ public class MovementHandler : MonoBehaviour
     private bool lateralMovmementFlag = false;
 
 
-    private void Awake() { characterController = GetComponent<CharacterController>(); }
+    private void Awake()
+    {
+        characterController = GetComponent<CharacterController>();
+        characterControllerDriver = GetComponent<CharacterControllerDriver>();
+        jumpScriptRef = GetComponent<Jump>();
+        dashScriptRef = GetComponent<Dash>();
+        moveProvider = GameObject.FindWithTag("LocomotionSystem").GetComponent<ActionBasedContinuousMoveProvider>();
+    }
 
     // handle player falling due to gravity in Update()
     private void Update()
@@ -52,7 +65,9 @@ public class MovementHandler : MonoBehaviour
     public void toggleHorizontalMovement()
     {
         isHorizontalMovement = !isHorizontalMovement;                           // toggle the horizontal movement flag
-        characterController.slopeLimit = (isHorizontalMovement) ? 45.0f : 0.0f; // set the slope limit based off of the current status of the flag
+        this.moveProvider.enabled = isHorizontalMovement;                       // enable/disable the ContinuousMoveProvider
+        this.characterControllerDriver.enabled = isHorizontalMovement;          // enable/disable the CharacterControllerDriver
+        this.dashScriptRef.enabled = isHorizontalMovement;                      // enable/disable dashing
     }
 
     // public method to toggle whether or not the player can move vertically

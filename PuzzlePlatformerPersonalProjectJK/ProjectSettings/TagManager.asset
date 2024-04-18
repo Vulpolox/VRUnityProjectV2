@@ -9,6 +9,7 @@ TagManager:
   - RightHand
   - ColorBlock
   - GameManager
+  - LocomotionSystem
   layers:
   - Default
   - TransparentFX
