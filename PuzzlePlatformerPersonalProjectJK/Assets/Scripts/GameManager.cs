@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
     private void UseSuperJump()
     {
         bool isMoving = movementHandler.getLateralMovement();                            // a boolean that specifies whether or not the player has moved laterally since last frame
-        float velocityToApply = Mathf.Sqrt(10.0f * -2.0f * -9.81f);                      // the jump velocity to apply to the player
+        float velocityToApply = Mathf.Sqrt(15.0f * -2.0f * -9.81f);                      // the jump velocity to apply to the player
 
         Vector3 superJumpVelocity = Vector3.zero;
         superJumpVelocity.y = (isMoving) ? velocityToApply : (velocityToApply / 1.35f);  // b/c of jankiness from the ContinuousMoveProvider, jump velocity needs to be modified when
